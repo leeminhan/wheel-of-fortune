@@ -13,3 +13,21 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+---
+
+# Team Documentation
+
+## Code repository:
+
+This project is hosted in []().
+
+## Project overview
+
+Reference:
+- [Miro brainstorming page](https://miro.com/app/board/uXjVO3zXUrI=/)
+- [Google Docs](https://docs.google.com/document/d/1V5WoDZL_CqMUHfjw0ThUPfUawvhcfa1LeGuohlTKjjE/edit)
+
+## A technical walkthrough to the code
+
+WIP
