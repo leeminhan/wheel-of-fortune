@@ -139,6 +139,7 @@ contract SpinWheel {
         }
         
         emit LogErrorMessage(_gameId, "You have guessed wrongly"); 
+        gameTracker[_gameId] = GameStatus(msg.sender, GameState.CLOSE, gameStatus.topic);
     }
 
     function calculateReward() public returns (uint256 _reward) {
