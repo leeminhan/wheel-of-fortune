@@ -124,8 +124,16 @@ contract SpinWheel {
         return (currentGameId, topic);
     }
     
+    function getGameStatus(uint _gameId) public view returns(GameStatus memory) {
+        return gameTracker[_gameId];
+    }
+
+    function getBalance() public view returns (uint) {
+        return addressToBalance[msg.sender];
+    }
+    
     function guessByWord(uint256 _gameId, string memory guess) public {
-        GameStatus memory gameStatus = gameTracker[_gameId];
+        GameStatus memory gameStatus = getGameStatus(_gameId);
         require(gameStatus._address == msg.sender, "You need to be the same player");
         require(gameStatus.status == GameState.OPEN, "Sorry the game is closed");
 
@@ -136,9 +144,10 @@ contract SpinWheel {
             rewardValue = calculateReward();
             addressToBalance[msg.sender] += rewardValue;
             emit LogRewardValue(_gameId, rewardValue); 
+        } else {
+            emit LogErrorMessage(_gameId, "You have guessed wrongly"); 
         }
         
-        emit LogErrorMessage(_gameId, "You have guessed wrongly"); 
         gameTracker[_gameId] = GameStatus(msg.sender, GameState.CLOSE, gameStatus.topic);
     }
 
