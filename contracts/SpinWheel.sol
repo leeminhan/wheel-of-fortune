@@ -162,9 +162,11 @@ contract SpinWheel {
             rewardValue = calculateReward();
             addressToBalance[msg.sender] += rewardValue;
             emit LogRewardValue(_gameId, rewardValue); 
+        } else {
+            emit LogErrorMessage(_gameId, "You have guessed wrongly"); 
         }
         
-        emit LogErrorMessage(_gameId, "You have guessed wrongly"); 
+        gameTracker[_gameId] = GameStatus(msg.sender, GameState.CLOSE, gameStatus.topic);
     }
 
     function calculateReward() public returns (uint256 _reward) {
