@@ -145,6 +145,10 @@ contract SpinWheel {
     function getGameStatus(uint _gameId) public view returns(GameStatus memory) {
         return gameTracker[_gameId];
     }
+
+    function getBalance() public view returns (uint) {
+        return addressToBalance[msg.sender];
+    }
     
     function guessByWord(uint256 _gameId, string memory guess) public {
         GameStatus memory gameStatus = getGameStatus(_gameId);
